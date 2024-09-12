@@ -14,6 +14,9 @@ class TOONTANKS_API ABasePawn : public APawn
 public:
 	ABasePawn();
 
+protected:
+	void RotateTurret(const FVector AimPosition);
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UCapsuleComponent *CapsuleComponent;
