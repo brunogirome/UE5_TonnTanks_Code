@@ -30,6 +30,8 @@ public:
 
 	virtual void SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) override;
 
+	virtual void Tick(float DeltaTime) override;
+
 protected: 
   virtual void BeginPlay() override;
 

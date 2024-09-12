@@ -18,9 +18,4 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint->SetupAttachment(TurrentMesh);
 }
 
-void ABasePawn::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 

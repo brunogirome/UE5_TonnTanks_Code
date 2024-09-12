@@ -1,12 +1,13 @@
 #include "Tank.h"
 
 #include "Kismet/GameplayStatics.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "Camera/CameraComponent.h"
-
+#include "Kismet/KismetSystemLibrary.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "Engine/HitResult.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 
 ATank::ATank()
 {
@@ -29,6 +30,20 @@ void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
   else
   {
     UE_LOG(LogTemp, Error, TEXT("'%s' Failed to find an Enhanced Input Component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
+  }
+}
+
+void ATank::Tick(float DeltaTime)
+{
+  Super::Tick(DeltaTime);
+
+  FHitResult hitResult;
+  if (
+      PlayerControllerRef &&
+      GetWorld() &&
+      PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, hitResult))
+  {
+    UKismetSystemLibrary::DrawDebugSphere(GetWorld(), hitResult.Location, 30.f, 12, FColor::Red, 0.f, 1.f);
   }
 }
 
