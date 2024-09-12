@@ -23,10 +23,15 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction *RotateAction;
 
+	APlayerController *PlayerControllerRef;
+
 public:
 	ATank();
 
 	virtual void SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) override;
+
+protected: 
+  virtual void BeginPlay() override;
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")

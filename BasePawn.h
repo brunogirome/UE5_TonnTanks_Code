@@ -14,9 +14,6 @@ class TOONTANKS_API ABasePawn : public APawn
 public:
 	ABasePawn();
 
-protected:
-	virtual void BeginPlay() override;
-
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UCapsuleComponent *CapsuleComponent;

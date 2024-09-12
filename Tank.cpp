@@ -32,6 +32,16 @@ void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
   }
 }
 
+void ATank::BeginPlay()
+{
+  Super::BeginPlay();
+
+  if (APlayerController *currentController = Cast<APlayerController>(GetController()))
+  {
+    PlayerControllerRef = currentController;
+  }
+}
+
 void ATank::Move(const FInputActionValue &Value)
 {
   float deltaSeconds = UGameplayStatics::GetWorldDeltaSeconds(this);
