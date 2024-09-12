@@ -1,8 +1,12 @@
 #include "BasePawn.h"
 
+#include "Components/CapsuleComponent.h"
+
 ABasePawn::ABasePawn()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	CapsuleComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Collider"));
+	RootComponent = CapsuleComponent;
 }
 
 void ABasePawn::BeginPlay()
