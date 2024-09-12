@@ -35,8 +35,11 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UCameraComponent *CameraComponent;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
 	float Speed = 400.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	float TurnRate = 400.f;
 
 	void Move(const FInputActionValue &Value);
 

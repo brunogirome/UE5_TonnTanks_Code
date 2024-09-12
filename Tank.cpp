@@ -35,17 +35,15 @@ void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 void ATank::Move(const FInputActionValue &Value)
 {
   float deltaSeconds = UGameplayStatics::GetWorldDeltaSeconds(this);
-
   FVector DeltaLocation = FVector();
   DeltaLocation.X = Value.Get<float>() * Speed * deltaSeconds;
-  AddActorLocalOffset(DeltaLocation);
+  AddActorLocalOffset(DeltaLocation, true);
 }
 
 void ATank::Turn(const FInputActionValue &Value)
 {
   float deltaSeconds = UGameplayStatics::GetWorldDeltaSeconds(this);
-
   FRotator DeltaRotation = FRotator();
-  DeltaRotation.Yaw = Value.Get<float>() * deltaSeconds * 10.f;
-  AddActorLocalRotation(DeltaRotation);
+  DeltaRotation.Yaw = Value.Get<float>() * TurnRate * deltaSeconds;
+  AddActorLocalRotation(DeltaRotation, true);
 }
