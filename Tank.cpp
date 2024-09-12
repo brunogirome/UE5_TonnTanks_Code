@@ -1,5 +1,6 @@
 #include "Tank.h"
 
+#include "Kismet/GameplayStatics.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 
@@ -33,12 +34,18 @@ void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 
 void ATank::Move(const FInputActionValue &Value)
 {
-  FVector newLocation = GetActorLocation() + GetActorForwardVector() * Value.Get<float>() * 20.f;
-  SetActorLocation(newLocation);
+  float deltaSeconds = UGameplayStatics::GetWorldDeltaSeconds(this);
+
+  FVector DeltaLocation = FVector();
+  DeltaLocation.X = Value.Get<float>() * Speed * deltaSeconds;
+  AddActorLocalOffset(DeltaLocation);
 }
 
 void ATank::Turn(const FInputActionValue &Value)
 {
-  FRotator newRotation = GetActorRotation() + FRotator(0, Value.Get<float>(), 0);
-  SetActorRotation(newRotation);
+  float deltaSeconds = UGameplayStatics::GetWorldDeltaSeconds(this);
+
+  FRotator DeltaRotation = FRotator();
+  DeltaRotation.Yaw = Value.Get<float>() * deltaSeconds * 10.f;
+  AddActorLocalRotation(DeltaRotation);
 }
