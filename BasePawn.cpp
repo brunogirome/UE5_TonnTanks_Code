@@ -3,6 +3,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/CapsuleComponent.h"
 
+#include "Projectile.h"
+
 ABasePawn::ABasePawn()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -38,11 +40,11 @@ void ABasePawn::RotateTurret(const FVector AimPosition)
 
 void ABasePawn::Fire()
 {
-	if (ProjectileSpawnPoint)
+	if (GetWorld() && ProjectileSpawnPoint)
 	{
 		FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
-		UKismetSystemLibrary::DrawDebugSphere(GetWorld(), SpawnLocation, 30.f, 12, FColor::Red, 3.f, 1.f);
+		FRotator SpawnRotation = ProjectileSpawnPoint->GetComponentRotation();
 
-		UE_LOG(LogTemp, Display, TEXT("FIRE DEEZ NUTS"));
+		GetWorld()->SpawnActor<AProjectile>(BP_ProjectileClass, SpawnLocation, SpawnRotation);
 	}
 }
