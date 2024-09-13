@@ -5,6 +5,7 @@
 #include "Tower.generated.h"
 
 class ATank;
+struct FTimerHandler;
 
 UCLASS()
 class TOONTANKS_API ATower : public ABasePawn
@@ -22,4 +23,14 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat", meta = (AllowPrivateAccess = "true"))
 	float FireRange = 600.f;
+
+	FTimerHandle FireRateTimerHandler;
+
+	float FireRate = 2.f;
+
+	void CheckFireCondition();
+
+	bool IsTankOnFireRange(FVector &OutTankLocation);
+
+	bool IsTankOnFireRange();
 };

@@ -1,21 +1,18 @@
 #include "Tower.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
+
 #include "Tank.h"
 
 void ATower::Tick(float DeltaTime)
 {
   Super::Tick(DeltaTime);
 
-  if (Tank)
+  FVector tankLocation;
+  if (IsTankOnFireRange(tankLocation))
   {
-    FVector tankLocation = Tank->GetActorLocation();
-    float distance = FVector::Dist(GetActorLocation(), tankLocation);
-
-    if (distance <= FireRange)
-    {
-      RotateTurret(tankLocation);
-    }
+    RotateTurret(tankLocation);
   }
 }
 
@@ -27,4 +24,36 @@ void ATower::BeginPlay()
   {
     Tank = player;
   }
+
+  if (GetWorld())
+  {
+    GetWorldTimerManager().SetTimer(FireRateTimerHandler, this, &ATower::CheckFireCondition, FireRate, true);
+  }
+}
+
+void ATower::CheckFireCondition()
+{
+  if (IsTankOnFireRange() && GetWorld())
+  {
+    UE_LOG(LogTemp, Display, TEXT("FIRE DEEZ (ENEMY %s XDD), %f"), *GetActorNameOrLabel(), GetWorld()->GetTimeSeconds());
+  }
+}
+
+bool ATower::IsTankOnFireRange(FVector &OutTankLocation)
+{
+  if (Tank)
+  {
+    FVector tankLocation = Tank->GetActorLocation();
+    OutTankLocation = tankLocation;
+    float distance = FVector::Dist(GetActorLocation(), OutTankLocation);
+
+    return distance <= FireRange;
+  }
+  return false;
+}
+
+bool ATower::IsTankOnFireRange()
+{
+  FVector zeroVector = FVector::ZeroVector;
+  return IsTankOnFireRange(zeroVector);
 }
