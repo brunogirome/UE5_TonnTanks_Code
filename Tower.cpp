@@ -35,7 +35,7 @@ void ATower::CheckFireCondition()
 {
   if (IsTankOnFireRange() && GetWorld())
   {
-    UE_LOG(LogTemp, Display, TEXT("FIRE DEEZ (ENEMY %s XDD), %f"), *GetActorNameOrLabel(), GetWorld()->GetTimeSeconds());
+    Fire();
   }
 }
 
