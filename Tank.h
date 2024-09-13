@@ -23,6 +23,9 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction *RotateAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction *FireAction;
+
 	APlayerController *PlayerControllerRef;
 
 public:
@@ -32,8 +35,8 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
-protected: 
-  virtual void BeginPlay() override;
+protected:
+	virtual void BeginPlay() override;
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")

@@ -26,6 +26,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
   {
     EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ATank::Move);
     EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &ATank::Turn);
+    EnhancedInputComponent->BindAction(FireAction, ETriggerEvent::Started, this, &ATank::Fire);
   }
   else
   {

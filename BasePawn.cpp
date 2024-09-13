@@ -35,3 +35,14 @@ void ABasePawn::RotateTurret(const FVector AimPosition)
 						25.f));
 	}
 }
+
+void ABasePawn::Fire()
+{
+	if (ProjectileSpawnPoint)
+	{
+		FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
+		UKismetSystemLibrary::DrawDebugSphere(GetWorld(), SpawnLocation, 30.f, 12, FColor::Red, 3.f, 1.f);
+
+		UE_LOG(LogTemp, Display, TEXT("FIRE DEEZ NUTS"));
+	}
+}
