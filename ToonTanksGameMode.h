@@ -21,6 +21,9 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Gameplay")
 	void StartGame();
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Gameplay")
+	void GameOver(bool bWonGame);
+
 private:
 	ATank *Tank;
 	ATankController *TankController;
@@ -29,4 +32,7 @@ private:
 	float StartDelay = 4.f;
 
 	void HandleGameStart();
+
+	int32 TargetTowers = 0;
+	const int32 GetTargetTowersCount();
 };
