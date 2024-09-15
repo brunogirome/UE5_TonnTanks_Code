@@ -26,6 +26,8 @@ void AToonTanksGameMode::BeginPlay()
 {
   Super::BeginPlay();
 
+  StartGame();
+
   Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
   TankController = Cast<ATankController>(UGameplayStatics::GetPlayerController(this, 0));
 

@@ -18,6 +18,9 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Gameplay")
+	void StartGame();
+
 private:
 	ATank *Tank;
 	ATankController *TankController;
