@@ -15,7 +15,7 @@ void AToonTanksGameMode::ActorDied(AActor *DeadActor)
     {
       TankController->SetPlayerEnableState(false);
     }
-    GameOver(true);
+    GameOver(false);
   }
   else if (auto tower = Cast<ATower>(DeadActor))
   {
@@ -25,7 +25,7 @@ void AToonTanksGameMode::ActorDied(AActor *DeadActor)
 
     if (TargetTowers <= 0)
     {
-      GameOver(false);
+      GameOver(true);
     }
   }
 }
