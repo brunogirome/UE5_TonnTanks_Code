@@ -1,6 +1,8 @@
 #include "Projectile.h"
 
+#include "Kismet/GameplayStatics.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "GameFramework/DamageType.h"
 
 AProjectile::AProjectile()
 {
@@ -36,9 +38,30 @@ void AProjectile::OnHit(
 		FVector NormalImpulse,
 		const FHitResult &Hit)
 {
-	UE_LOG(LogTemp, Display, TEXT("The dood shooting: %s - HitComp: %s, OtherActor: %s, OtherComp: %s"),
-				 *GetActorNameOrLabel(),
-				 *HitComp->GetName(),
-				 *OtherActor->GetName(),
-				 *OtherComp->GetName());
+
+	if (auto owner = GetOwner())
+	{
+		if (OtherActor && OtherActor != this && OtherActor != owner)
+		{
+			if (auto controller = owner->GetInstigatorController())
+			{
+				UGameplayStatics::ApplyDamage(
+						OtherActor,
+						Damage,
+						controller,
+						this,
+						UDamageType::StaticClass());
+			}
+			else
+			{
+				UE_LOG(LogTemp, Error, TEXT("AProjectile::OnHit - Can't get the owner controller."));
+			}
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("AProjectile::OnHit - Can't get the projectile Owner."));
+	}
+
+	Destroy();
 }

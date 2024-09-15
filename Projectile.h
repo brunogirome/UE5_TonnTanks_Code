@@ -34,6 +34,9 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Projectile", meta = (AllowPrivateAccess = "true"))
 	float MaxSpeed = 60.f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Projectile", meta = (AllowPrivateAccess = "true"))
+	float Damage = 50.f;
+
 	UFUNCTION()
 	void OnHit(
 			UPrimitiveComponent *HitComp,

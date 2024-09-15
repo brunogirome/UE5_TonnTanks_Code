@@ -24,4 +24,8 @@ void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 void UHealthComponent::OnDamageTaken(AActor *DamagedActor, float Damage, const UDamageType *DamageType, AController *Instigator, AActor *DamageCauser)
 {
+	if (Damage > 0)
+	{
+		HealthValue = FMath::Clamp(HealthValue - Damage, 0, MaxHealth);
+	}
 }
