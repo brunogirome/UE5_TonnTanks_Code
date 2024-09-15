@@ -13,7 +13,7 @@ void AToonTanksGameMode::ActorDied(AActor *DeadActor)
     Tank->HandleDestruction();
     if (TankController)
     {
-      TankController->SetPlayerEnableState(fa);
+      TankController->SetPlayerEnableState(false);
     }
   }
   else if (auto tower = Cast<ATower>(DeadActor))
@@ -28,4 +28,27 @@ void AToonTanksGameMode::BeginPlay()
 
   Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
   TankController = Cast<ATankController>(UGameplayStatics::GetPlayerController(this, 0));
+
+  HandleGameStart();
+}
+
+void AToonTanksGameMode::HandleGameStart()
+{
+  if (TankController)
+  {
+    TankController->SetPlayerEnableState(false);
+
+    FTimerHandle PlayerEnabledTimerHandle;
+
+    FTimerDelegate InputTimerDelegate = FTimerDelegate::CreateUObject(
+        TankController,
+        &ATankController::SetPlayerEnableState,
+        true);
+
+    GetWorld()->GetTimerManager().SetTimer(
+        PlayerEnabledTimerHandle,
+        InputTimerDelegate,
+        StartDelay,
+        false);
+  }
 }

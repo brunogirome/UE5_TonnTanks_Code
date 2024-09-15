@@ -21,4 +21,9 @@ protected:
 private:
 	ATank *Tank;
 	ATankController *TankController;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay", meta = (AllowPrivateAccess = "true"))
+	float StartDelay = 2.5f;
+
+	void HandleGameStart();
 };

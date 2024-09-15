@@ -44,7 +44,7 @@ void ATank::Tick(float DeltaTime)
       GetWorld() &&
       TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, hitResult))
   {
-    UKismetSystemLibrary::DrawDebugSphere(GetWorld(), hitResult.Location, 30.f, 12, FColor::Red, 0.f, 1.f);
+    // UKismetSystemLibrary::DrawDebugSphere(GetWorld(), hitResult.Location, 30.f, 12, FColor::Red, 0.f, 1.f);
     RotateTurret(hitResult.Location);
   }
 }
