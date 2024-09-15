@@ -40,13 +40,23 @@ void ATank::Tick(float DeltaTime)
 
   FHitResult hitResult;
   if (
-      PlayerControllerRef &&
+      TankPlayerController &&
       GetWorld() &&
-      PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, hitResult))
+      TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, hitResult))
   {
     UKismetSystemLibrary::DrawDebugSphere(GetWorld(), hitResult.Location, 30.f, 12, FColor::Red, 0.f, 1.f);
     RotateTurret(hitResult.Location);
   }
+}
+
+void ATank::HandleDestruction()
+{
+  Super::HandleDestruction();
+
+  SetActorHiddenInGame(true);
+  SetActorTickEnabled(false);
+
+  // Destroy();
 }
 
 void ATank::BeginPlay()
@@ -55,7 +65,7 @@ void ATank::BeginPlay()
 
   if (APlayerController *currentController = Cast<APlayerController>(GetController()))
   {
-    PlayerControllerRef = currentController;
+    TankPlayerController = currentController;
   }
 }
 
