@@ -8,6 +8,7 @@ class UProjectileMovementComponent;
 class UPrimitiveComponent;
 class UParticleSystem;
 class UParticleSystemComponent;
+class USoundBase;
 
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
@@ -44,6 +45,12 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
 	UParticleSystem *HitParticles;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	USoundBase *LaunchSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	USoundBase *HitSound;
 
 	UFUNCTION()
 	void OnHit(

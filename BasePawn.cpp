@@ -28,8 +28,13 @@ void ABasePawn::HandleDestruction()
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(this, ExplosionParticles, GetActorLocation(), GetActorRotation());
 	}
-	// TODO:
-	// - Sound effets
+	if (ExplosionSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(
+				this,
+				ExplosionSound,
+				GetActorLocation());
+	}
 }
 
 void ABasePawn::RotateTurret(const FVector AimPosition)

@@ -7,6 +7,7 @@
 class UCapsuleComponent;
 class AProjectile;
 class UParticleSystem;
+class USoundBase;
 
 UCLASS()
 class TOONTANKS_API ABasePawn : public APawn
@@ -41,4 +42,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
 	UParticleSystem *ExplosionParticles;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	USoundBase *ExplosionSound;
 };
