@@ -7,6 +7,7 @@
 class UProjectileMovementComponent;
 class UPrimitiveComponent;
 class UParticleSystem;
+class UParticleSystemComponent;
 
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
@@ -28,6 +29,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent *ProjectileMovementComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	UParticleSystemComponent *ParticleSystemComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Projectile", meta = (AllowPrivateAccess = "true"))
 	float InitialSpeed = 40.f;
