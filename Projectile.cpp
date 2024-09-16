@@ -64,4 +64,8 @@ void AProjectile::OnHit(
 	}
 
 	Destroy();
+	if (HitParticles)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), GetActorRotation());
+	}
 }

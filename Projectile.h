@@ -6,6 +6,7 @@
 
 class UProjectileMovementComponent;
 class UPrimitiveComponent;
+class UParticleSystem;
 
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
@@ -36,6 +37,9 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Projectile", meta = (AllowPrivateAccess = "true"))
 	float Damage = 50.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Projectile", meta = (AllowPrivateAccess = "true"))
+	UParticleSystem *HitParticles;
 
 	UFUNCTION()
 	void OnHit(
