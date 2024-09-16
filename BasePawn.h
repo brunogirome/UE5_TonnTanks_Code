@@ -6,6 +6,7 @@
 
 class UCapsuleComponent;
 class AProjectile;
+class UParticleSystem;
 
 UCLASS()
 class TOONTANKS_API ABasePawn : public APawn
@@ -37,4 +38,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<AProjectile> BP_ProjectileClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	UParticleSystem *ExplosionParticles;
 };

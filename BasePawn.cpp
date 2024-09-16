@@ -2,6 +2,7 @@
 
 #include "Kismet/GameplayStatics.h"
 #include "Components/CapsuleComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 
 #include "Projectile.h"
 
@@ -23,8 +24,11 @@ ABasePawn::ABasePawn()
 
 void ABasePawn::HandleDestruction()
 {
+	if (ExplosionParticles)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this, ExplosionParticles, GetActorLocation(), GetActorRotation());
+	}
 	// TODO:
-	// -Visual effets
 	// - Sound effets
 }
 
