@@ -9,6 +9,7 @@ class UPrimitiveComponent;
 class UParticleSystem;
 class UParticleSystemComponent;
 class USoundBase;
+class UCameraShakeBase;
 
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
@@ -51,6 +52,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
 	USoundBase *HitSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<UCameraShakeBase> HitCameraShakeClass;
 
 	UFUNCTION()
 	void OnHit(

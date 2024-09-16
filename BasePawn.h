@@ -8,6 +8,7 @@ class UCapsuleComponent;
 class AProjectile;
 class UParticleSystem;
 class USoundBase;
+class UCameraShakeBase;
 
 UCLASS()
 class TOONTANKS_API ABasePawn : public APawn
@@ -45,4 +46,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	USoundBase *ExplosionSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<UCameraShakeBase> ExplosionCameraShakeClass;
 };

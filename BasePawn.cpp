@@ -28,12 +28,21 @@ void ABasePawn::HandleDestruction()
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(this, ExplosionParticles, GetActorLocation(), GetActorRotation());
 	}
+
 	if (ExplosionSound)
 	{
 		UGameplayStatics::PlaySoundAtLocation(
 				this,
 				ExplosionSound,
 				GetActorLocation());
+	}
+
+	if (ExplosionCameraShakeClass && GetWorld())
+	{
+		if (auto playerController = GetWorld()->GetFirstPlayerController())
+		{
+			playerController->ClientStartCameraShake(ExplosionCameraShakeClass);
+		}
 	}
 }
 

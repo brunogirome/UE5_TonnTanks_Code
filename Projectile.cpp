@@ -64,6 +64,14 @@ void AProjectile::OnHit(
 						this,
 						UDamageType::StaticClass());
 			}
+
+			if (HitCameraShakeClass && GetWorld())
+			{
+				if (auto playerController = GetWorld()->GetFirstPlayerController())
+				{
+					playerController->ClientStartCameraShake(HitCameraShakeClass);
+				}
+			}
 			else
 			{
 				UE_LOG(LogTemp, Error, TEXT("AProjectile::OnHit - Can't get the owner controller."));
