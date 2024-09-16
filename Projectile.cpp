@@ -51,11 +51,11 @@ void AProjectile::OnHit(
 		const FHitResult &Hit)
 {
 
-	if (auto owner = GetOwner())
+	if (AActor *owner = GetOwner())
 	{
 		if (OtherActor && OtherActor != this && OtherActor != owner)
 		{
-			if (auto controller = owner->GetInstigatorController())
+			if (AController *controller = owner->GetInstigatorController())
 			{
 				UGameplayStatics::ApplyDamage(
 						OtherActor,
@@ -67,7 +67,7 @@ void AProjectile::OnHit(
 
 			if (HitCameraShakeClass && GetWorld())
 			{
-				if (auto playerController = GetWorld()->GetFirstPlayerController())
+				if (APlayerController * playerController = GetWorld()->GetFirstPlayerController())
 				{
 					playerController->ClientStartCameraShake(HitCameraShakeClass);
 				}

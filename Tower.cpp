@@ -40,7 +40,7 @@ void ATower::BeginPlay()
 
 void ATower::CheckFireCondition()
 {
-  if (IsTankOnFireRange() && GetWorld())
+  if (IsTankOnFireRange() && Tank->bIsAlive && GetWorld())
   {
     Fire();
   }

@@ -39,6 +39,8 @@ public:
 
 	APlayerController *GetTankPlayerController() const { return TankPlayerController; };
 
+	bool bIsAlive = true;
+
 protected:
 	virtual void BeginPlay() override;
 
